@@ -12,7 +12,7 @@ const int MAX_HISTORY_EVENTS = 10;
 const int MAX_RACES = 6;
 
 // String arrays
-string name_parts[] = {"Zor", "Arg", "Tron", "Bel", "Nix", "Eld", "Omn", "Qua", "Tal", "Xyn"};
+string name_parts[] = {"Zor", "Arg", "Tron", "Bel", "Nix", "Eld", "Omn", "Qua", "Tal", "Xyn", "Arra", "Kis"};
 string atmospheres[] = {"Oxygen-rich", "Methane", "Carbon Dioxide", "Nitrogen", "Ammonia", "Helium"};
 string size_descriptions[] = {"Tiny", "Small", "Medium", "Large", "Massive"};
 
@@ -33,14 +33,19 @@ string histories[] =
     "ravaged by nuclear war",
     "survived the death star",
     "probably one of starfields 1,692 planets",
-    "They claim that this is where they found out the answer to Life, the Universe and Everything"
+    "They claim that this is where they found out the answer to Life, the Universe and Everything",
+    "Great source of Spice",
+    "Home Planet to the Lisan al-Gaib ?",
+    "Dr WHO was here",
+    "In proximity to a Halo ring",
+    "It has multiple moons",
     
 };
 
 //string for alien race names
 string races[] = 
 {
-    "Mandalorians", "Shanghili", "Xenomorphs", "Vulcans", "Geth", "Jedi", "Turians" 
+    "Mandalorians", "Shanghili", "Xenomorphs", "Vulcans", "Geth", "Jedi", "Turians", "Daleks", "Martians" 
 };
 
 string appearances[] = {"Tall", "Short", "slender", "Reptilian", "Humanoid", "Insect-like"};
@@ -120,7 +125,8 @@ int main()
                 
                 switch (Duel_input)
                 {
-                
+                	
+                	//Case for guessing game
                 	case 1:
                 	{
                 		
@@ -170,7 +176,8 @@ int main()
     					
     					break;
     				}						
-				
+					
+					//case for tic tac toe game
 					case 2:
 					{
 						char board[3][3] = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', '9'}};
@@ -340,7 +347,7 @@ int main()
 					}
 					
 				}
-
+			    //break for outer switch statement
                 break;
             }
             
@@ -360,7 +367,7 @@ int main()
         	
             default:
             {	
-            	//can use cerr here as well :) I checked 
+            	//can use cerr here instead :) I checked 
                 cout << "Invalid choice. Please try again." << endl;
         	}
             
@@ -488,6 +495,8 @@ void save_planet_file(const string &name, const string &atmosphere, const string
            	
         }
         
+        
+        //for closing the file after we are done with it
         outFile.close();
         cout << "\nPlanet saved to 'planet.txt' successfully." << endl;
         
@@ -515,7 +524,8 @@ void load_planet_file()
         getline(inFile, size);
         inFile >> eventCount;
         inFile.ignore(); // Ignore newline
-
+	
+		//for loading histories
         string history[MAX_HISTORY_EVENTS];
         for (int i = 0; i < eventCount; ++i) 
 		{
@@ -526,7 +536,8 @@ void load_planet_file()
 
         inFile >> raceCount;
         inFile.ignore(); // Ignore newline
-
+		
+		//for loading races
         string raceList[MAX_RACES];
         string raceDetails[MAX_RACES];       
         
@@ -538,6 +549,8 @@ void load_planet_file()
             
         }
 
+
+		//for closing the file after we are done with it
         inFile.close();
 
         // Display the loaded planet details
