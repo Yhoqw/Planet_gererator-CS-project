@@ -184,11 +184,14 @@ int main()
         					cout << "\n";
         					for (int i = 0; i < 3; i++) 
 							{
+								
             					for (int j = 0; j < 3; j++) 
 								{
                 					cout << board[i][j] << " ";
             					}
+            					
         					    cout << "\n";
+        					    
         					}
 
         					// Player's turn
@@ -200,8 +203,10 @@ int main()
 
         					if (move < 1 || move > 9 || board[row][col] == 'X' || board[row][col] == 'O') 
 							{
+								
         					    cout << "Invalid move! Try again.\n";
             					continue;
+            					
         					}
 
     					    board[row][col] = player;
@@ -210,29 +215,39 @@ int main()
         					bool playerWin = false;
         					for (int i = 0; i < 3; i++) 
 							{
+								
             					if ((board[i][0] == player && board[i][1] == player && board[i][2] == player) || (board[0][i] == player && board[1][i] == player && board[2][i] == player)) 
 								{
+									
                 					playerWin = true;
                 					break;
+                					
             					}
+            					
         					}
         					
 							if ((board[0][0] == player && board[1][1] == player && board[2][2] == player) || (board[0][2] == player && board[1][1] == player && board[2][0] == player)) 
 							{
+								
         					    playerWin = true;
+        					    
         					}
 
         					if (playerWin) 
 							{
+								
             					cout << "\n";
             					for (int i = 0; i < 3; i++) 
 								{
+									
                 					for (int j = 0; j < 3; j++) 
 									{
                     					cout << board[i][j] << " ";
                 					}
+                					
                 					cout << "\n";
-            					}				
+            					}
+												
             					cout << "Congratulations! You win!\n";
             					break;
         					}
@@ -241,25 +256,33 @@ int main()
         					bool draw = true;
         					for (int i = 0; i < 3; i++) 
 							{
+								
             					for (int j = 0; j < 3; j++) 
 								{
+									
                 					if (board[i][j] != 'X' && board[i][j] != 'O') 
 									{
-                    					draw = false;
-                					}
+                    					draw = false;	
+									}
+									
             					}
+            					
         					}
         					if (draw) 
 							{
+								
             					cout << "\n";
             					for (int i = 0; i < 3; i++) 
 								{
+									
                 					for (int j = 0; j < 3; j++) 
 									{
                     					cout << board[i][j] << " ";
                 					}
+                					
                 					cout << "\n";
             					}
+            					
             				cout << "It's a draw!\n";
             				break;
         					}
@@ -268,23 +291,27 @@ int main()
         					bool moveMade = false;
         					for (int i = 1; i <= 9 && !moveMade; i++) 
 							{
+								
             					row = (i - 1) / 3, col = (i - 1) % 3;
             					if (board[row][col] != 'X' && board[row][col] != 'O') 
 								{
                 					board[row][col] = computer;
                 					moveMade = true;
             					}
+            					
         					}
 
         					// Check for computer win
         					bool computerWin = false;
         					for (int i = 0; i < 3; i++) 
 							{
+								
             					if ((board[i][0] == computer && board[i][1] == computer && board[i][2] == computer) || (board[0][i] == computer && board[1][i] == computer && board[2][i] == computer)) 
 								{
                 					computerWin = true;
                 					break;
             					}
+            					
         					}
         					
 							if ((board[0][0] == computer && board[1][1] == computer && board[2][2] == computer) || (board[0][2] == computer && board[1][1] == computer && board[2][0] == computer)) 
@@ -297,11 +324,13 @@ int main()
             					cout << "\n";
             					for (int i = 0; i < 3; i++) 
 								{
+									
                 					for (int j = 0; j < 3; j++) 
 									{
                     					cout << board[i][j] << " ";
                 					}
                 					cout << "\n";
+                					
             					}
             					cout << "Computer wins! Better luck next time.\n";
             					break;
