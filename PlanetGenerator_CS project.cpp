@@ -31,7 +31,10 @@ string histories[] =
     "a target of space pirates",
     "a secret research outpost",
     "ravaged by nuclear war",
-    "survived the death star"
+    "survived the death star",
+    "probably one of starfields 1,692 planets",
+    "They claim that this is where they found out the answer to Life, the Universe and Everything"
+    
 };
 
 //string for alien race names
@@ -61,10 +64,21 @@ int main()
 	srand(static_cast<unsigned int>(time(0)));
 
     //Menu
+    cout << "=============================================================================================================================" << endl;
+    cout << " ######  #          #    #     # ####### #######     #####  ####### #     # ####### ######     #    ####### ####### ######  " << endl;
+	cout << " #     # #         # #   ##    # #          #       #     # #       ##    # #       #     #   # #      #    #     # #     # " << endl;
+    cout << " ######  #       #     # #  #  # #####      #       #  #### #####   #  #  # #####   ######  #     #    #    #     # ######  " << endl;
+    cout << " #       #       ####### #   # # #          #       #     # #       #   # # #       #   #   #######    #    #     # #   #   " << endl;
+    cout << " #       #       #     # #    ## #          #       #     # #       #    ## #       #    #  #     #    #    #     # #    #  " << endl;
+    cout << " #       ####### #     # #     # #######    #        #####  ####### #     # ####### #     # #     #    #    ####### #     # " << endl;
+    cout << "=============================================================================================================================" << endl;    
+    
+    cout << "A project by Yazdan Ali Khan, Raja Yawar Abbas and Hammad Shahid" << endl;
+    
     int Input;
     do 
 	{
-        cout << "Planet Generator" << endl;
+        cout << "\n" "================================" << endl;		
         cout << "1. Explore a New Planet" << endl;
         cout << "2. Explore previous Planet from File" << endl;
         cout << "3. Exit Program" << endl;
@@ -96,6 +110,208 @@ int main()
                 // Display and save the planet (using functions)
                 displayPlanet(planetName, planetAtmosphere, planetSize, planetHistory, historyEventCount, planetRaces, raceDetails, raceCount);
                 save_planet_file(planetName, planetAtmosphere, planetSize, planetHistory, historyEventCount, planetRaces, raceDetails, raceCount);
+                
+                //Challenge logic
+                int Duel_input;
+                
+                cout << "\n" "---------------------------" << endl;
+                cout << "The inhabitants challenge you to a duel if you want to leave their planet. Press" "\n" "1. To play a guessing game " "\n" "2. To play a round of Tic tac toe" << endl;
+                cin >> Duel_input;
+                
+                switch (Duel_input)
+                {
+                
+                	case 1:
+                	{
+                		
+                		//Guessing game logic
+                		int secret_number = rand() % 20 + 1;
+                		int max_attempts = 5;
+                
+                		cout << "\n" "---------------------------" << endl;
+    					cout << "Welcome to Guess the Number game!" << endl;
+    					cout << "You have " << max_attempts << " attempts to guess the number." << endl;                
+                
+    					// Loop for the guessing game
+    					for (int attempt = 1; attempt <= max_attempts; attempt++) 
+						{
+						
+        					cout << "Attempt " << attempt << " of " << max_attempts << endl;
+        	
+        					// Ask for the user's guess
+        					int guess;
+        	
+    		    			cout << "Enter your guess (1-20): ";
+    				    	cin >> guess;
+
+    				    	// Check if the guess is correct or not
+    				    	if (guess > secret_number) 
+							{
+    				    	    cout << "Too high! Try again." << endl;
+        					} 
+		
+							else if (guess < secret_number) 
+							{
+    				    	    cout << "Too low! Try again." << endl;
+    				    	}
+        
+							else 
+							{
+    				    	    cout << "Congratulations! You guessed the right number!" << endl;
+    				    	    break;
+    				    	}
+
+    				    	// after attempts are finished give the answer
+    				    	if (attempt == max_attempts) 
+							{
+        	    				cout << "Sorry, you've used all your attempts. The correct number was " << secret_number << "." << endl;
+        					}		
+    					}
+    					
+    					break;
+    				}						
+				
+					case 2:
+					{
+						char board[3][3] = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', '9'}};
+    					char player = 'X', computer = 'O';
+    
+    					cout << "Welcome to Tic Tac Toe!\n";
+
+    					while (true) 
+						{
+        					// Display the board
+        					cout << "\n";
+        					for (int i = 0; i < 3; i++) 
+							{
+            					for (int j = 0; j < 3; j++) 
+								{
+                					cout << board[i][j] << " ";
+            					}
+        					    cout << "\n";
+        					}
+
+        					// Player's turn
+        					int move;
+        					cout << "Enter your move (1-9): ";
+        					cin >> move;
+
+        					int row = (move - 1) / 3, col = (move - 1) % 3;
+
+        					if (move < 1 || move > 9 || board[row][col] == 'X' || board[row][col] == 'O') 
+							{
+        					    cout << "Invalid move! Try again.\n";
+            					continue;
+        					}
+
+    					    board[row][col] = player;
+
+        					// Check for player win
+        					bool playerWin = false;
+        					for (int i = 0; i < 3; i++) 
+							{
+            					if ((board[i][0] == player && board[i][1] == player && board[i][2] == player) || (board[0][i] == player && board[1][i] == player && board[2][i] == player)) 
+								{
+                					playerWin = true;
+                					break;
+            					}
+        					}
+        					
+							if ((board[0][0] == player && board[1][1] == player && board[2][2] == player) || (board[0][2] == player && board[1][1] == player && board[2][0] == player)) 
+							{
+        					    playerWin = true;
+        					}
+
+        					if (playerWin) 
+							{
+            					cout << "\n";
+            					for (int i = 0; i < 3; i++) 
+								{
+                					for (int j = 0; j < 3; j++) 
+									{
+                    					cout << board[i][j] << " ";
+                					}
+                					cout << "\n";
+            					}				
+            					cout << "Congratulations! You win!\n";
+            					break;
+        					}
+
+        					// Check if board is full (draw)
+        					bool draw = true;
+        					for (int i = 0; i < 3; i++) 
+							{
+            					for (int j = 0; j < 3; j++) 
+								{
+                					if (board[i][j] != 'X' && board[i][j] != 'O') 
+									{
+                    					draw = false;
+                					}
+            					}
+        					}
+        					if (draw) 
+							{
+            					cout << "\n";
+            					for (int i = 0; i < 3; i++) 
+								{
+                					for (int j = 0; j < 3; j++) 
+									{
+                    					cout << board[i][j] << " ";
+                					}
+                					cout << "\n";
+            					}
+            				cout << "It's a draw!\n";
+            				break;
+        					}
+
+        					// Computer's turn
+        					bool moveMade = false;
+        					for (int i = 1; i <= 9 && !moveMade; i++) 
+							{
+            					row = (i - 1) / 3, col = (i - 1) % 3;
+            					if (board[row][col] != 'X' && board[row][col] != 'O') 
+								{
+                					board[row][col] = computer;
+                					moveMade = true;
+            					}
+        					}
+
+        					// Check for computer win
+        					bool computerWin = false;
+        					for (int i = 0; i < 3; i++) 
+							{
+            					if ((board[i][0] == computer && board[i][1] == computer && board[i][2] == computer) || (board[0][i] == computer && board[1][i] == computer && board[2][i] == computer)) 
+								{
+                					computerWin = true;
+                					break;
+            					}
+        					}
+        					
+							if ((board[0][0] == computer && board[1][1] == computer && board[2][2] == computer) || (board[0][2] == computer && board[1][1] == computer && board[2][0] == computer)) 
+							{
+           						computerWin = true;
+        					}
+
+        					if (computerWin) 
+							{
+            					cout << "\n";
+            					for (int i = 0; i < 3; i++) 
+								{
+                					for (int j = 0; j < 3; j++) 
+									{
+                    					cout << board[i][j] << " ";
+                					}
+                					cout << "\n";
+            					}
+            					cout << "Computer wins! Better luck next time.\n";
+            					break;
+        					}
+    					}
+    					break;
+					}
+					
+				}
+
                 break;
             }
             
@@ -115,6 +331,7 @@ int main()
         	
             default:
             {	
+            	//can use cerr here as well :) I checked 
                 cout << "Invalid choice. Please try again." << endl;
         	}
             
@@ -130,6 +347,7 @@ string generatePlanetName()
     int parts = rand() % 3 + 2; // Between 2 and 4 parts
     string name = "";
     
+    // Combining together multiple names to make one name essentially
     for (int i = 0; i < parts; ++i) 
 	{
 		
