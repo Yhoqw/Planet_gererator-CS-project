@@ -1,14 +1,18 @@
 #include <iostream>
 #include <string>
-#include <cstdlib>
 #include <ctime>
 #include <fstream>
+
+//TO DO:
+//fuel system
+//structures
+//clear un-needed text
 
 using namespace std;
 
 // Constants
 const int MAX_NAME_PARTS = 5;
-const int MAX_HISTORY_EVENTS = 10;
+const int MAX_HISTORY_EVENTS = 6;
 const int MAX_RACES = 6;
 
 // String arrays
@@ -35,7 +39,7 @@ string histories[] =
     "probably one of starfields 1,692 planets",
     "They claim that this is where they found out the answer to Life, the Universe and Everything",
     "Great source of Spice",
-    "Home Planet to the Lisan al-Gaib ?",
+    "Home Planet to the Lisan al-Gaib?",
     "Dr WHO was here",
     "In proximity to a Halo ring",
     "It has multiple moons",
@@ -222,7 +226,7 @@ int main()
         					bool playerWin = false;
         					for (int i = 0; i < 3; i++) 
 							{
-								
+								//Horizontal and vertical
             					if ((board[i][0] == player && board[i][1] == player && board[i][2] == player) || (board[0][i] == player && board[1][i] == player && board[2][i] == player)) 
 								{
 									
@@ -233,6 +237,7 @@ int main()
             					
         					}
         					
+        					//diagonal
 							if ((board[0][0] == player && board[1][1] == player && board[2][2] == player) || (board[0][2] == player && board[1][1] == player && board[2][0] == player)) 
 							{
 								
@@ -418,7 +423,8 @@ void generateHistory(string history[], int &eventCount)
     for (int i = 0; i < eventCount; ++i) 
 	{
 		
-        history[i] = histories[rand() % (sizeof(histories) / sizeof(histories[0]))];       
+        history[i] = histories[rand() % (sizeof(histories) / sizeof(histories[0]))]; 
+		      
     }
     
 }
@@ -561,4 +567,5 @@ void load_planet_file()
 	{
         cerr << "\nError: Unable to open file for reading." << endl;
     }
+    
 }
