@@ -15,13 +15,32 @@ const int MAX_NAME_PARTS = 5;
 const int MAX_HISTORY_EVENTS = 6;
 const int MAX_RACES = 6;
 
+// Struct Definitions
+struct Planet 
+{
+    string name;
+    string atmosphere;
+    string size;
+};
+
+struct Race 
+{
+    string name;
+    string appearance;
+    string techLevel;
+    string government;
+};
+
+
+
+
 // String arrays
 string name_parts[] = {"Zor", "Arg", "Tron", "Bel", "Nix", "Eld", "Omn", "Qua", "Tal", "Xyn", "Arra", "Kis"};
 string atmospheres[] = {"Oxygen-rich", "Methane", "Carbon Dioxide", "Nitrogen", "Ammonia", "Helium"};
 string size_descriptions[] = {"Tiny", "Small", "Medium", "Large", "Massive"};
 
 
-//string for planet history prompts
+//string for planet history prompts (too many sci-fi references!!)
 string histories[] = 
 {
     "colonized by ancient explorers",
@@ -46,10 +65,10 @@ string histories[] =
     
 };
 
-//string for alien race names
+//string for alien race names (I admit laser shark is kind of silly)
 string races[] = 
 {
-    "Mandalorians", "Shanghili", "Xenomorphs", "Vulcans", "Geth", "Jedi", "Turians", "Daleks", "Martians" 
+    "Mandalorians", "Shanghili", "Xenomorphs", "Vulcans", "Geth", "Jedi", "Turians", "Daleks", "Martians", "Laser Sharks"
 };
 
 string appearances[] = {"Tall", "Short", "slender", "Reptilian", "Humanoid", "Insect-like"};
@@ -72,21 +91,23 @@ int main()
     //for seeding
 	srand(static_cast<unsigned int>(time(0)));
 
-    //Menu
-    cout << "=============================================================================================================================" << endl;
-    cout << " ######  #          #    #     # ####### #######     #####  ####### #     # ####### ######     #    ####### ####### ######  " << endl;
-	cout << " #     # #         # #   ##    # #          #       #     # #       ##    # #       #     #   # #      #    #     # #     # " << endl;
-    cout << " ######  #       #     # #  #  # #####      #       #  #### #####   #  #  # #####   ######  #     #    #    #     # ######  " << endl;
-    cout << " #       #       ####### #   # # #          #       #     # #       #   # # #       #   #   #######    #    #     # #   #   " << endl;
-    cout << " #       #       #     # #    ## #          #       #     # #       #    ## #       #    #  #     #    #    #     # #    #  " << endl;
-    cout << " #       ####### #     # #     # #######    #        #####  ####### #     # ####### #     # #     #    #    ####### #     # " << endl;
-    cout << "=============================================================================================================================" << endl;    
+	int Input;
+	
+    	//Menu
+    	cout << "=============================================================================================================================" << endl;
+    	cout << " ######  #          #    #     # ####### #######     #####  ####### #     # ####### ######     #    ####### ####### ######  " << endl;
+		cout << " #     # #         # #   ##    # #          #       #     # #       ##    # #       #     #   # #      #    #     # #     # " << endl;
+    	cout << " ######  #       #     # #  #  # #####      #       #  #### #####   #  #  # #####   ######  #     #    #    #     # ######  " << endl;
+    	cout << " #       #       ####### #   # # #          #       #     # #       #   # # #       #   #   #######    #    #     # #   #   " << endl;
+    	cout << " #       #       #     # #    ## #          #       #     # #       #    ## #       #    #  #     #    #    #     # #    #  " << endl;
+    	cout << " #       ####### #     # #     # #######    #        #####  ####### #     # ####### #     # #     #    #    ####### #     # " << endl;
+    	cout << "=============================================================================================================================" << endl;    
     
-    cout << "A project by Yazdan Ali Khan, Raja Yawar Abbas and Hammad Shahid" << endl;
+    	cout << "A project by Yazdan Ali Khan, Raja Yawar Abbas and Hammad Shahid" << endl;
     
-    int Input;
-    do 
-	{
+		
+	do 
+	{    
         cout << "\n" "================================" << endl;		
         cout << "1. Explore a New Planet" << endl;
         cout << "2. Explore previous Planet from File" << endl;
@@ -157,16 +178,38 @@ int main()
     				    	// Check if the guess is correct or not
     				    	if (guess > secret_number) 
 							{
-    				    	    cout << "Too high! Try again." << endl;
+								//Feedback depending on how close the guess is for higher
+								if (guess > (secret_number + 5) )
+								{
+    				    	    	cout << "Too high! Try again." << endl;
+    				    		}
+    				    		
+    				    		else if (guess > secret_number)
+    				    		{
+    				    			cout << "Slightly too high. Try again." << endl;
+								}
+    				    		
         					} 
 		
 							else if (guess < secret_number) 
 							{
-    				    	    cout << "Too low! Try again." << endl;
+								//Feedback depending on how close the guess is for lower
+								if (guess < (secret_number - 5) )
+								{
+    				    	    	cout << "Too low! Try again." << endl;
+    				    		}
+    				    		
+    				    		else if (guess < secret_number)
+    				    		{
+    				    			cout << "Slightly too low. Try again." << endl;
+								}
+								
     				    	}
         
 							else 
 							{
+								//to clear previous text and restart the loop
+								system("cls");
     				    	    cout << "Congratulations! You guessed the right number!" << endl;
     				    	    break;
     				    	}
@@ -174,6 +217,7 @@ int main()
     				    	// after attempts are finished give the answer
     				    	if (attempt == max_attempts) 
 							{
+								system("cls");
         	    				cout << "Sorry, you've used all your attempts. The correct number was " << secret_number << "." << endl;
         					}		
     					}
@@ -259,7 +303,9 @@ int main()
                 					
                 					cout << "\n";
             					}
-												
+								
+								//clear previous text and display win statement 
+								system("cls");				
             					cout << "Congratulations! You win!\n";
             					break;
         					}
@@ -294,8 +340,11 @@ int main()
                 					
                 					cout << "\n";
             					}
-            					
+            				
+							system("cls");		
             				cout << "It's a draw!\n";
+            				cout << endl;
+            				
             				break;
         					}
 
@@ -344,7 +393,10 @@ int main()
                 					cout << "\n";
                 					
             					}
+            					
+								system("cls");
             					cout << "Computer wins! Better luck next time.\n";
+            					
             					break;
         					}
     					}
