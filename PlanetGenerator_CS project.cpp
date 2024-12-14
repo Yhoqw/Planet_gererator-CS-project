@@ -1,19 +1,21 @@
 #include <iostream>
 #include <string>
+#incluide <cstdlib>
 #include <ctime>
 #include <fstream>
+
+//Project By Yazdan Ali Khan 
 
 //TO DO:
 //fuel system
 //structures
-//clear un-needed text
 
 using namespace std;
 
 // Constants
 const int MAX_NAME_PARTS = 5;
 const int MAX_HISTORY_EVENTS = 6;
-const int MAX_RACES = 6;
+const int MAX_RACES = 5;
 
 // Struct Definitions
 struct Planet 
@@ -30,7 +32,6 @@ struct Race
     string techLevel;
     string government;
 };
-
 
 
 
