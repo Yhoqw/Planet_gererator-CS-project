@@ -1,14 +1,11 @@
 #include <iostream>
 #include <string>
-#incluide <cstdlib>
+#include <cstdlib>
 #include <ctime>
 #include <fstream>
 
-//Project By Yazdan Ali Khan 
+//Project By Yazdan Ali Khan (2024665), Raja Yawar Abbas (2024533), Hammad Shahid (2024389)
 
-//TO DO:
-//fuel system
-//structures
 
 using namespace std;
 
@@ -16,23 +13,6 @@ using namespace std;
 const int MAX_NAME_PARTS = 5;
 const int MAX_HISTORY_EVENTS = 6;
 const int MAX_RACES = 5;
-
-// Struct Definitions
-struct Planet 
-{
-    string name;
-    string atmosphere;
-    string size;
-};
-
-struct Race 
-{
-    string name;
-    string appearance;
-    string techLevel;
-    string government;
-};
-
 
 
 // String arrays
@@ -63,7 +43,7 @@ string histories[] =
     "Dr WHO was here",
     "In proximity to a Halo ring",
     "It has multiple moons",
-    
+    "Asimov must have written his laws of robotics here"
 };
 
 //string for alien race names (I admit laser shark is kind of silly)
@@ -72,6 +52,7 @@ string races[] =
     "Mandalorians", "Shanghili", "Xenomorphs", "Vulcans", "Geth", "Jedi", "Turians", "Daleks", "Martians", "Laser Sharks"
 };
 
+//race details
 string appearances[] = {"Tall", "Short", "slender", "Reptilian", "Humanoid", "Insect-like"};
 string techLevels[] = {"Primitive", "Industrial", "Spacefaring", "Advanced AI", "Interdimensional"};
 string governments[] = {"Monarchy", "Republic", "Tribal council", "Technocracy", "Anarchy", "Theocracy"};
@@ -95,27 +76,28 @@ int main()
 	int Input;
 	
     	//Menu
-    	cout << "=============================================================================================================================" << endl;
+    	cout << "=================================================================================================================================" << endl;
     	cout << " ######  #          #    #     # ####### #######     #####  ####### #     # ####### ######     #    ####### ####### ######  " << endl;
 		cout << " #     # #         # #   ##    # #          #       #     # #       ##    # #       #     #   # #      #    #     # #     # " << endl;
     	cout << " ######  #       #     # #  #  # #####      #       #  #### #####   #  #  # #####   ######  #     #    #    #     # ######  " << endl;
     	cout << " #       #       ####### #   # # #          #       #     # #       #   # # #       #   #   #######    #    #     # #   #   " << endl;
     	cout << " #       #       #     # #    ## #          #       #     # #       #    ## #       #    #  #     #    #    #     # #    #  " << endl;
     	cout << " #       ####### #     # #     # #######    #        #####  ####### #     # ####### #     # #     #    #    ####### #     # " << endl;
-    	cout << "=============================================================================================================================" << endl;    
+    	cout << "=================================================================================================================================" << endl;    
     
     	cout << "A project by Yazdan Ali Khan, Raja Yawar Abbas and Hammad Shahid" << endl;
     
-		
+	//do while loop begins	
 	do 
 	{    
-        cout << "\n" "================================" << endl;		
+        cout << "\n" "================================================" << endl;		
         cout << "1. Explore a New Planet" << endl;
         cout << "2. Explore previous Planet from File" << endl;
         cout << "3. Exit Program" << endl;
         cout << "Enter your choice: ";
         cin >> Input;
-
+	
+		//switch statement for input
         switch (Input) 
 		{	
 			
@@ -161,7 +143,7 @@ int main()
                 		int max_attempts = 5;
                 
                 		cout << "\n" "---------------------------" << endl;
-    					cout << "Welcome to Guess the Number game!" << endl;
+    					cout << "Welcome to Guess the Number game! Choose a number between 1 and 20" << endl;
     					cout << "You have " << max_attempts << " attempts to guess the number." << endl;                
                 
     					// Loop for the guessing game
@@ -438,7 +420,7 @@ int main()
 // Function to generate a random planet name
 string generatePlanetName() 
 {
-    int parts = rand() % 3 + 2; // Between 2 and 4 parts
+    int parts = rand() % 3 + 2; 
     string name = "";
     
     // Combining together multiple names to make one name essentially
